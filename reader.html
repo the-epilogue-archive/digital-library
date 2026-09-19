@@ -6,28 +6,26 @@
     <title>Reading Room — The Epilogue Archive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&family=Caveat:wght@500;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --desk: #1c1410;
-            --paper: #e8ddc0;
-            --paper-2: #d6c8a3;
-            --paper-dark: #b8a880;
-            --paper-edge: #a89a70;
-            --ink: #1a1410;
-            --ink-soft: #4a3a28;
-            --stamp-red: #9b2a2a;
-            --stamp-blue: #2a4a6b;
-            --string: #b03535;
+            --bg: #14110d;
+            --paper: #e9ddc1;
+            --ink: #2a2118;
+            --ink-soft: #5a4a36;
+            --red: #8a2828;
+            --stamp: #7a1f1f;
+            --gold: #b8915a;
+            --gold-bright: #d4a24c;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { height: 100%; }
 
         body {
-            font-family: 'Courier Prime', 'Noto Serif Bengali', 'Courier New', monospace;
-            color: var(--ink);
-            background: var(--desk);
+            font-family: 'Cormorant Garamond', 'Noto Serif Bengali', Georgia, serif;
+            color: var(--paper);
+            background: var(--bg);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -39,86 +37,51 @@
             content: "";
             position: fixed;
             inset: 0;
-            z-index: -1;
             background:
-                radial-gradient(ellipse at 25% 15%, rgba(120, 80, 40, 0.28) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 90%, rgba(60, 30, 15, 0.5) 0%, transparent 60%),
-                linear-gradient(180deg, #2a1f18 0%, #1a1410 100%);
-        }
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
+                radial-gradient(ellipse at 50% 0%, rgba(184, 145, 90, 0.09) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(122, 31, 31, 0.07) 0%, transparent 60%);
+            pointer-events: none;
             z-index: -1;
-            opacity: 0.35;
-            background-image:
-                radial-gradient(circle at 15% 25%, rgba(0,0,0,0.4) 0.5px, transparent 1.2px),
-                radial-gradient(circle at 65% 45%, rgba(0,0,0,0.35) 0.5px, transparent 1.2px),
-                radial-gradient(circle at 40% 75%, rgba(0,0,0,0.3) 0.5px, transparent 1.2px);
-            background-size: 8px 8px, 11px 11px, 9px 9px;
-            pointer-events: none;
         }
-
-        /* ====== MAGNIFIER ====== */
-        .magnifier {
-            position: fixed;
-            top: 0; left: 0;
-            width: 46px;
-            height: 46px;
-            pointer-events: none;
-            z-index: 99999;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.6) rotate(-15deg);
-            transition: opacity 0.25s ease, transform 0.3s cubic-bezier(.2,.8,.2,1);
-            will-change: transform, opacity;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6)) drop-shadow(0 0 10px rgba(212,162,76,0.5));
-        }
-        .magnifier.show { opacity: 1; }
-        .magnifier svg { width: 100%; height: 100%; display: block; }
-        .back-btn, .icon-btn { cursor: none; }
 
         /* ====== TOP BAR ====== */
         .top-bar {
             position: relative;
             z-index: 3;
-            background: linear-gradient(180deg, #2a1f18 0%, #1a1410 100%);
-            border-bottom: 1px solid rgba(168, 154, 112, 0.35);
+            background: #1a1510;
+            border-bottom: 1px solid rgba(184, 145, 90, 0.25);
             padding: 14px 22px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            box-shadow:
-                0 6px 20px rgba(0,0,0,0.6),
-                inset 0 1px 0 rgba(232, 221, 192, 0.08);
         }
 
         .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 9px;
+            gap: 8px;
             color: var(--paper);
             text-decoration: none;
             font-family: 'Special Elite', serif;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             padding: 9px 16px;
-            border: 1px solid rgba(168, 154, 112, 0.5);
+            border: 1px solid rgba(184, 145, 90, 0.4);
             border-radius: 2px;
-            background: rgba(20, 10, 5, 0.4);
-            transition: all 0.3s ease;
+            background: rgba(20, 15, 10, 0.6);
+            transition: all 0.2s ease;
             white-space: nowrap;
         }
         .back-btn::before {
             content: "◀";
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
+            font-size: 0.65rem;
+            transition: transform 0.2s ease;
         }
         .back-btn:hover {
-            background: rgba(155, 42, 42, 0.2);
-            border-color: var(--stamp-red);
-            box-shadow: 0 0 20px rgba(155, 42, 42, 0.35);
+            border-color: var(--gold-bright);
+            color: var(--gold-bright);
         }
         .back-btn:hover::before { transform: translateX(-3px); }
 
@@ -126,7 +89,7 @@
             flex: 1;
             text-align: center;
             font-family: 'Special Elite', 'Noto Serif Bengali', serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             letter-spacing: 2px;
             color: var(--paper);
             text-transform: uppercase;
@@ -134,70 +97,48 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             padding: 0 10px;
-            text-shadow: 0 2px 3px rgba(0,0,0,0.8);
         }
-        /* Blinking cursor on reader title */
-        .top-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 0.85em;
-            background: var(--paper);
-            margin-left: 6px;
-            vertical-align: -0.05em;
-            animation: blink 1.05s steps(2, end) infinite;
-            box-shadow: 0 0 10px rgba(232,221,192,0.6);
-        }
-        @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
-        }
-
         .book-title-display .author {
             display: block;
             font-family: 'Caveat', 'Noto Serif Bengali', cursive;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             letter-spacing: 0.5px;
-            color: rgba(232, 221, 192, 0.6);
+            color: rgba(233, 221, 193, 0.55);
             margin-top: 3px;
             text-transform: none;
-            text-shadow: none;
         }
 
         .top-actions { display: flex; gap: 8px; white-space: nowrap; }
 
         .icon-btn {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(20, 10, 5, 0.5);
-            border: 1px solid rgba(168, 154, 112, 0.4);
+            background: rgba(20, 15, 10, 0.6);
+            border: 1px solid rgba(184, 145, 90, 0.35);
             border-radius: 2px;
             color: var(--paper);
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: 'Courier Prime', monospace;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: monospace;
         }
         .icon-btn:hover {
-            background: rgba(155, 42, 42, 0.2);
-            border-color: var(--stamp-red);
-            box-shadow: 0 0 16px rgba(155, 42, 42, 0.4);
+            border-color: var(--gold-bright);
+            color: var(--gold-bright);
         }
 
         /* ====== READER STAGE ====== */
         .reader-stage {
             flex: 1;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 26px;
+            padding: 24px;
             overflow: hidden;
-            background:
-                radial-gradient(ellipse at 50% 50%, rgba(107, 74, 42, 0.12) 0%, transparent 65%),
-                linear-gradient(180deg, #1a1410 0%, #0d0805 100%);
         }
 
         .case-frame {
@@ -205,49 +146,32 @@
             width: 100%;
             max-width: 1150px;
             height: 100%;
-            padding: 42px 42px 32px;
-            border-radius: 3px;
-            background: linear-gradient(160deg, #e8ddc0 0%, #d6c8a3 55%, #c9b896 100%);
+            padding: 40px 40px 28px;
+            border-radius: 2px;
+            background: var(--paper);
             box-shadow:
-                2px 3px 0 var(--paper-edge),
-                4px 8px 0 rgba(0,0,0,0.35),
-                0 30px 70px -20px rgba(0,0,0,0.85),
-                0 0 80px rgba(120, 80, 40, 0.2);
-            animation: fadeUp 0.8s ease both;
+                0 1px 0 #d8caa8,
+                0 30px 60px -20px rgba(0,0,0,0.85);
             display: flex;
             flex-direction: column;
+            animation: fadeUp 0.6s ease both;
         }
 
+        /* Folder tab */
         .case-frame::before {
             content: "CASE FILE — EVIDENCE DOCUMENT";
             position: absolute;
-            top: -20px;
-            left: 30px;
-            padding: 7px 18px 6px;
-            background: linear-gradient(180deg, #d6c8a3 0%, #c9b896 100%);
-            border-radius: 4px 6px 0 0;
+            top: -18px;
+            left: 28px;
+            padding: 6px 16px 5px;
+            background: #d8caa8;
+            border-radius: 3px 5px 0 0;
             font-family: 'Special Elite', serif;
-            font-size: 0.62rem;
-            letter-spacing: 3px;
+            font-size: 0.58rem;
+            letter-spacing: 2.5px;
             color: var(--ink-soft);
             text-transform: uppercase;
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.3),
-                0 -1px 0 rgba(0,0,0,0.1),
-                -1px 0 3px rgba(0,0,0,0.2);
-        }
-
-        .case-frame::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 3px;
-            background-image:
-                radial-gradient(circle at 12% 8%, rgba(107, 74, 42, 0.12) 0%, transparent 7%),
-                radial-gradient(circle at 90% 92%, rgba(107, 74, 42, 0.1) 0%, transparent 10%),
-                repeating-linear-gradient(0deg, rgba(90, 70, 30, 0.02) 0px, transparent 1px, transparent 3px);
-            pointer-events: none;
-            z-index: 1;
+            box-shadow: 0 -1px 2px rgba(0,0,0,0.15);
         }
 
         .case-meta {
@@ -255,62 +179,44 @@
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            padding-bottom: 14px;
-            margin-bottom: 18px;
-            border-bottom: 1px solid rgba(74, 58, 40, 0.4);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(90, 70, 40, 0.35);
             position: relative;
-            z-index: 2;
             flex-wrap: wrap;
         }
         .case-meta::after {
             content: "";
             position: absolute;
-            bottom: -3px;
+            bottom: -1px;
             left: 0;
-            width: 60px;
+            width: 55px;
             height: 2px;
-            background: var(--stamp-red);
-            opacity: 0.65;
+            background: var(--stamp);
+            opacity: 0.7;
         }
 
         .meta-item {
             font-family: 'Special Elite', serif;
-            font-size: 0.65rem;
-            letter-spacing: 2.5px;
+            font-size: 0.62rem;
+            letter-spacing: 2px;
             color: var(--ink-soft);
             text-transform: uppercase;
         }
         .meta-item strong {
             color: var(--ink);
             font-weight: 400;
-            margin-left: 6px;
-            letter-spacing: 1.5px;
+            margin-left: 5px;
+            letter-spacing: 1.2px;
         }
 
         .doc-viewer {
             position: relative;
             flex: 1;
-            z-index: 2;
             background: #f5ecd5;
-            border: 1px solid rgba(74, 58, 40, 0.35);
-            box-shadow:
-                inset 0 0 30px rgba(107, 74, 42, 0.15),
-                0 6px 18px rgba(0,0,0,0.25);
+            border: 1px solid rgba(90, 70, 40, 0.3);
             overflow: hidden;
-            padding: 6px;
-        }
-
-        .doc-viewer::before {
-            content: "";
-            position: absolute;
-            top: -8px;
-            left: 18px;
-            width: 2px;
-            height: 18px;
-            background: var(--string);
-            box-shadow: 0 0 6px rgba(176, 53, 53, 0.7);
-            transform: rotate(-4deg);
-            z-index: 3;
+            padding: 5px;
         }
 
         iframe {
@@ -321,54 +227,7 @@
             display: block;
         }
 
-        /* ====== READER LOAD-IN TRANSITION ====== */
-        .enter-overlay {
-            position: fixed;
-            inset: 0;
-            background: #0a0603;
-            z-index: 99997;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 26px;
-            animation: enterFadeOut 1s ease 0.6s forwards;
-            pointer-events: none;
-        }
-        .enter-overlay .doc-icon {
-            width: 90px;
-            height: 120px;
-            background: linear-gradient(160deg, #f5ecd5, #d6c8a3);
-            border-radius: 2px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7), inset 0 0 30px rgba(107,74,42,0.15);
-            position: relative;
-            animation: docRise 1.1s cubic-bezier(.2,.8,.2,1) forwards;
-        }
-        .enter-overlay .doc-icon::before {
-            content: "";
-            position: absolute;
-            inset: 14px 12px auto 12px;
-            height: 3px;
-            background: rgba(74,58,40,0.4);
-            box-shadow: 0 12px 0 rgba(74,58,40,0.35), 0 24px 0 rgba(74,58,40,0.3), 0 36px 0 rgba(74,58,40,0.25), 0 48px 0 rgba(74,58,40,0.2);
-        }
-        .enter-overlay .enter-text {
-            font-family: 'Special Elite', serif;
-            font-size: 0.78rem;
-            letter-spacing: 6px;
-            color: var(--paper);
-            text-transform: uppercase;
-            opacity: 0.85;
-        }
-        @keyframes enterFadeOut {
-            to { opacity: 0; visibility: hidden; }
-        }
-        @keyframes docRise {
-            0% { transform: translateY(20px) scale(0.9); opacity: 0; }
-            100% { transform: translateY(-10px) scale(1); opacity: 1; }
-        }
-
-        /* ====== LOADING STATE ====== */
+        /* ====== LOADING ====== */
         .loading-state {
             position: absolute;
             inset: 0;
@@ -376,59 +235,32 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 22px;
+            gap: 18px;
             background: #f5ecd5;
             z-index: 4;
             color: var(--ink-soft);
         }
 
-        .typewriter-loader {
-            font-family: 'Special Elite', serif;
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            color: var(--ink);
-            text-transform: uppercase;
+        .loading-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--stamp);
+            box-shadow: 0 0 0 0 rgba(122, 31, 31, 0.5);
+            animation: pulse 1.4s infinite;
         }
-        .typewriter-loader::after {
-            content: "…";
-            animation: dots 1.4s steps(4, end) infinite;
-        }
-        @keyframes dots {
-            0%, 25% { content: "…"; }
-            50% { content: "…"; }
-            75% { content: "…"; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(122, 31, 31, 0.55); }
+            70% { box-shadow: 0 0 0 18px rgba(122, 31, 31, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(122, 31, 31, 0); }
         }
 
-        .loader-folder {
-            width: 68px;
-            height: 52px;
-            position: relative;
-        }
-        .loader-folder::before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 42px;
-            background: linear-gradient(160deg, #d6c8a3, #b8a880);
-            border-radius: 2px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        .loader-folder::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 8px;
-            width: 32px;
-            height: 12px;
-            background: linear-gradient(160deg, #e8ddc0, #d6c8a3);
-            border-radius: 3px 4px 0 0;
-            animation: tabBob 1.8s ease-in-out infinite;
-        }
-        @keyframes tabBob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+        .loading-text {
+            font-family: 'Special Elite', serif;
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            color: var(--ink);
+            text-transform: uppercase;
         }
 
         /* ====== ERROR ====== */
@@ -439,7 +271,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 14px;
             background: #f5ecd5;
             z-index: 6;
             text-align: center;
@@ -449,21 +281,19 @@
         .error-state.show { display: flex; }
         .error-state .stamp-big {
             font-family: 'Special Elite', serif;
-            font-size: 1.15rem;
-            letter-spacing: 6px;
-            color: var(--stamp-red);
-            border: 3px solid var(--stamp-red);
-            padding: 8px 20px;
-            border-radius: 3px;
+            font-size: 1.05rem;
+            letter-spacing: 5px;
+            color: var(--stamp);
+            border: 2.5px solid var(--stamp);
+            padding: 7px 18px;
+            border-radius: 2px;
             text-transform: uppercase;
-            transform: rotate(-4deg);
+            transform: rotate(-3deg);
             opacity: 0.85;
-            -webkit-mask-image: radial-gradient(circle at 35% 40%, black 55%, rgba(0,0,0,0.55) 100%);
-            mask-image: radial-gradient(circle at 35% 40%, black 55%, rgba(0,0,0,0.55) 100%);
         }
         .error-state h2 {
             font-family: 'Special Elite', 'Noto Serif Bengali', serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             letter-spacing: 3px;
             color: var(--ink);
             text-transform: uppercase;
@@ -471,7 +301,7 @@
         }
         .error-state p {
             font-family: 'Caveat', 'Noto Serif Bengali', cursive;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--ink-soft);
             max-width: 400px;
             line-height: 1.5;
@@ -479,27 +309,25 @@
         .error-state a {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 8px;
-            padding: 10px 22px;
-            background: rgba(155, 42, 42, 0.1);
-            border: 1px solid var(--stamp-red);
-            color: var(--stamp-red);
+            gap: 6px;
+            margin-top: 6px;
+            padding: 9px 20px;
+            border: 1px solid var(--stamp);
+            color: var(--stamp);
             text-decoration: none;
             font-family: 'Special Elite', serif;
-            font-size: 0.68rem;
+            font-size: 0.62rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             border-radius: 2px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
         .error-state a:hover {
-            background: rgba(155, 42, 42, 0.2);
-            box-shadow: 0 0 20px rgba(155, 42, 42, 0.35);
+            background: rgba(122, 31, 31, 0.1);
         }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -507,49 +335,25 @@
         @media (max-width: 700px) {
             .top-bar { padding: 10px 12px; gap: 8px; }
             .back-btn { padding: 8px 12px; font-size: 0; letter-spacing: 0; }
-            .back-btn::before { font-size: 0.85rem; }
-            .book-title-display { font-size: 0.82rem; letter-spacing: 1px; }
-            .book-title-display .author { font-size: 0.72rem; }
-            .icon-btn { width: 34px; height: 34px; font-size: 0.9rem; }
-            .reader-stage { padding: 12px; }
-            .case-frame { padding: 30px 16px 20px; }
-            .case-frame::before { left: 14px; font-size: 0.52rem; padding: 5px 12px; letter-spacing: 2px; }
-            .case-meta { gap: 8px; padding-bottom: 10px; margin-bottom: 12px; }
-            .meta-item { font-size: 0.55rem; letter-spacing: 1.5px; }
-            .magnifier { display: none; }
-            .back-btn, .icon-btn { cursor: pointer; }
+            .back-btn::before { font-size: 0.8rem; }
+            .book-title-display { font-size: 0.78rem; letter-spacing: 1px; }
+            .book-title-display .author { font-size: 0.78rem; }
+            .icon-btn { width: 32px; height: 32px; font-size: 0.85rem; }
+            .reader-stage { padding: 10px; }
+            .case-frame { padding: 26px 14px 16px; }
+            .case-frame::before { left: 12px; font-size: 0.5rem; padding: 5px 10px; letter-spacing: 2px; }
+            .case-meta { gap: 6px; padding-bottom: 10px; margin-bottom: 12px; }
+            .meta-item { font-size: 0.52rem; letter-spacing: 1.2px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Reader entry transition -->
-    <div class="enter-overlay">
-        <div class="doc-icon"></div>
-        <div class="enter-text">Reading Room</div>
-    </div>
-
-    <!-- Magnifier cursor -->
-    <div class="magnifier" id="magnifier" aria-hidden="true">
-        <svg viewBox="0 0 52 52">
-            <defs>
-                <radialGradient id="lensGrad2" cx="35%" cy="30%">
-                    <stop offset="0%" stop-color="rgba(255,235,180,0.35)"/>
-                    <stop offset="70%" stop-color="rgba(212,162,76,0.12)"/>
-                    <stop offset="100%" stop-color="rgba(212,162,76,0.3)"/>
-                </radialGradient>
-            </defs>
-            <circle cx="21" cy="21" r="15" fill="url(#lensGrad2)" stroke="#d4a24c" stroke-width="2.5"/>
-            <circle cx="21" cy="21" r="15" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.8"/>
-            <line x1="32" y1="32" x2="46" y2="46" stroke="#d4a24c" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-    </div>
-
     <div class="top-bar">
-        <a href="index.html" class="back-btn" id="backBtn">Archive</a>
+        <a href="index.html" class="back-btn">Archive</a>
 
         <div class="book-title-display" id="current-title">
-            Opening file<span class="top-cursor"></span>
+            Opening file…
             <span class="author" id="current-author"></span>
         </div>
 
@@ -563,17 +367,17 @@
     <div class="reader-stage">
         <div class="case-frame">
 
-            <div class="case-meta" id="caseMeta">
+            <div class="case-meta">
                 <div class="meta-item">Case No. <strong id="metaCase">—</strong></div>
                 <div class="meta-item">Subject <strong id="metaAuthor">—</strong></div>
                 <div class="meta-item">Filed <strong id="metaDate">—</strong></div>
-                <div class="meta-item">Status <strong style="color: var(--stamp-red);">Open</strong></div>
+                <div class="meta-item">Status <strong style="color: var(--stamp);">Open</strong></div>
             </div>
 
             <div class="doc-viewer" id="docViewer">
                 <div class="loading-state" id="loadingState">
-                    <div class="loader-folder"></div>
-                    <div class="typewriter-loader">retrieving evidence</div>
+                    <div class="loading-dot"></div>
+                    <div class="loading-text">Retrieving file</div>
                 </div>
 
                 <div class="error-state" id="errorState">
@@ -587,84 +391,6 @@
     </div>
 
     <script>
-        /* =========================================================
-           SOUND
-           ========================================================= */
-        let audioCtx = null;
-        let lastClickTime = 0;
-
-        function initAudio() {
-            if (audioCtx) return;
-            try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
-        }
-        function playTypewriterClick() {
-            if (!audioCtx) return;
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const now = performance.now();
-            if (now - lastClickTime < 70) return;
-            lastClickTime = now;
-            const t = audioCtx.currentTime;
-            const buffer = audioCtx.createBuffer(1, Math.floor(audioCtx.sampleRate * 0.025), audioCtx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < data.length; i++) {
-                data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (data.length * 0.28));
-            }
-            const src = audioCtx.createBufferSource();
-            src.buffer = buffer;
-            const filter = audioCtx.createBiquadFilter();
-            filter.type = 'bandpass';
-            filter.frequency.value = 2400 + Math.random() * 800;
-            filter.Q.value = 4;
-            const gain = audioCtx.createGain();
-            gain.gain.setValueAtTime(0.14, t);
-            gain.gain.exponentialRampToValueAtTime(0.001, t + 0.045);
-            src.connect(filter).connect(gain).connect(audioCtx.destination);
-            src.start(t);
-            src.stop(t + 0.06);
-        }
-        ['click', 'touchstart', 'keydown', 'mousemove'].forEach(evt => {
-            window.addEventListener(evt, initAudio, { once: true, passive: true });
-        });
-
-        /* =========================================================
-           MAGNIFIER CURSOR
-           ========================================================= */
-        const magnifier = document.getElementById('magnifier');
-        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-        let cx = mx, cy = my;
-        let hoveringInteractive = false;
-
-        window.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
-
-        function animateMagnifier() {
-            cx += (mx - cx) * 0.20;
-            cy += (my - cy) * 0.20;
-            const scale = hoveringInteractive ? 1 : 0.7;
-            const rot = hoveringInteractive ? 0 : -12;
-            magnifier.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%) scale(${scale}) rotate(${rot}deg)`;
-            requestAnimationFrame(animateMagnifier);
-        }
-        animateMagnifier();
-
-        // Show magnifier on any interactive element
-        document.addEventListener('mouseover', (e) => {
-            const el = e.target.closest('.back-btn, .icon-btn, iframe');
-            if (el) {
-                hoveringInteractive = true;
-                magnifier.classList.add('show');
-            }
-        });
-        document.addEventListener('mouseout', (e) => {
-            const el = e.target.closest('.back-btn, .icon-btn, iframe');
-            if (el) {
-                hoveringInteractive = false;
-                magnifier.classList.remove('show');
-            }
-        });
-
-        /* =========================================================
-           LOAD BOOK
-           ========================================================= */
         const urlParams = new URLSearchParams(window.location.search);
         const bookId = urlParams.get('book');
 
@@ -682,22 +408,20 @@
         const fullscreenBtn = document.getElementById('fullscreenBtn');
 
         function cleanUrl(u) { return (u || '').trim().replace(/^["']|["']$/g, ''); }
-
         function hash(seed) {
             let h = 0;
             for (let i = 0; i < (seed || '').length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
             return h;
         }
         function caseNumberFromId(id) {
-            const h = hash(id);
-            return 'CA-' + String(h % 9000 + 1000).padStart(4, '0');
+            return 'CA-' + String(hash(id) % 9000 + 1000).padStart(4, '0');
         }
         function dateFromId(id) {
             const h = hash(id || 'x');
-            const day = (h % 28) + 1;
-            const month = ((h >> 5) % 12) + 1;
-            const year = 2020 + ((h >> 10) % 6);
-            return `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}/${year}`;
+            const d = (h % 28) + 1;
+            const m = ((h >> 5) % 12) + 1;
+            const y = 2020 + ((h >> 10) % 6);
+            return `${String(d).padStart(2, '0')}/${String(m).padStart(2, '0')}/${y}`;
         }
 
         function showError(msg) {
@@ -714,15 +438,15 @@
             iframe.loading = 'eager';
             iframe.addEventListener('load', () => {
                 loadingState.style.opacity = '0';
-                loadingState.style.transition = 'opacity 0.6s ease';
-                setTimeout(() => loadingState.style.display = 'none', 650);
+                loadingState.style.transition = 'opacity 0.4s ease';
+                setTimeout(() => loadingState.style.display = 'none', 420);
             });
             docViewer.appendChild(iframe);
             openOriginal.href = src;
         }
 
         if (!bookId) {
-            titleEl.innerHTML = 'No file selected<span class="top-cursor"></span>';
+            titleEl.textContent = 'No file selected';
             showError('No case number found in the request. Return to the archive and select a file.');
         } else {
             fetch('./books.json')
@@ -730,13 +454,13 @@
                 .then(books => {
                     const book = (books || []).find(b => b.id === bookId);
                     if (!book) {
-                        titleEl.innerHTML = 'File not found<span class="top-cursor"></span>';
+                        titleEl.textContent = 'File not found';
                         showError('This case file does not exist in the archive.');
                         return;
                     }
 
                     document.title = `${book.title} — Case File`;
-                    titleEl.innerHTML = `${book.title}<span class="top-cursor"></span>`;
+                    titleEl.textContent = book.title;
                     if (book.author) authorEl.textContent = 'subject: ' + book.author;
 
                     metaCase.textContent = caseNumberFromId(book.id);
@@ -750,22 +474,18 @@
                 })
                 .catch(err => {
                     console.error('Error loading case file:', err);
-                    titleEl.innerHTML = 'Archive error<span class="top-cursor"></span>';
+                    titleEl.textContent = 'Archive error';
                     showError('The records could not be retrieved. Please try again.');
                 });
         }
 
-        refreshBtn.addEventListener('click', () => { playTypewriterClick(); window.location.reload(); });
+        refreshBtn.addEventListener('click', () => window.location.reload());
         fullscreenBtn.addEventListener('click', () => {
-            playTypewriterClick();
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen?.().catch(() => {});
             } else {
                 document.exitFullscreen?.();
             }
-        });
-        document.getElementById('backBtn').addEventListener('click', () => {
-            playTypewriterClick();
         });
     </script>
 </body>
