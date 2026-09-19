@@ -3,90 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Epilogue Archive — Case Files</title>
+    <title>The Epilogue Archive — Confidential Dossier</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&family=Caveat:wght@500;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --desk: #1c1410;
-            --paper: #e8ddc0;
-            --paper-2: #d6c8a3;
-            --paper-dark: #b8a880;
-            --paper-edge: #a89a70;
-            --ink: #1a1410;
-            --ink-soft: #4a3a28;
-            --stamp-red: #9b2a2a;
-            --stamp-blue: #2a4a6b;
-            --coffee: #6b4a2a;
-            --string: #b03535;
-            --pencil: #5a5a5a;
+            --bg: #14110d;
+            --bg-2: #1d1812;
+            --paper: #e9ddc1;
+            --paper-2: #d8caa8;
+            --paper-line: rgba(90, 70, 40, 0.12);
+            --ink: #2a2118;
+            --ink-soft: #5a4a36;
+            --red: #8a2828;
+            --stamp: #7a1f1f;
+            --gold: #b8915a;
+            --gold-bright: #d4a24c;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Courier Prime', 'Noto Serif Bengali', 'Courier New', monospace;
-            color: var(--ink);
+            font-family: 'Cormorant Garamond', 'Noto Serif Bengali', Georgia, serif;
+            color: var(--paper);
+            background: var(--bg);
             min-height: 100vh;
             padding: 60px 24px 80px;
             position: relative;
             overflow-x: hidden;
-            background: var(--desk);
         }
 
+        /* Single, static background — no repaint on scroll */
         body::before {
             content: "";
             position: fixed;
             inset: 0;
-            z-index: -2;
             background:
-                radial-gradient(ellipse at 30% 20%, rgba(120, 80, 40, 0.25) 0%, transparent 55%),
-                radial-gradient(ellipse at 80% 85%, rgba(60, 30, 15, 0.5) 0%, transparent 60%),
-                linear-gradient(180deg, #2a1f18 0%, #1a1410 100%);
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
+                radial-gradient(ellipse at 50% 0%, rgba(184, 145, 90, 0.09) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(122, 31, 31, 0.07) 0%, transparent 60%);
+            pointer-events: none;
             z-index: -1;
-            opacity: 0.35;
-            background-image:
-                radial-gradient(circle at 15% 25%, rgba(0,0,0,0.4) 0.5px, transparent 1.2px),
-                radial-gradient(circle at 65% 45%, rgba(0,0,0,0.35) 0.5px, transparent 1.2px),
-                radial-gradient(circle at 40% 75%, rgba(0,0,0,0.3) 0.5px, transparent 1.2px),
-                radial-gradient(circle at 85% 15%, rgba(255,200,140,0.05) 0.5px, transparent 1.2px);
-            background-size: 8px 8px, 11px 11px, 9px 9px, 14px 14px;
-            pointer-events: none;
         }
-
-        /* ====== MAGNIFIER CURSOR ====== */
-        .magnifier {
-            position: fixed;
-            top: 0; left: 0;
-            width: 52px;
-            height: 52px;
-            pointer-events: none;
-            z-index: 99999;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.6) rotate(-15deg);
-            transition: opacity 0.25s ease, transform 0.3s cubic-bezier(.2,.8,.2,1);
-            will-change: transform, opacity;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6)) drop-shadow(0 0 12px rgba(212,162,76,0.5));
-        }
-        .magnifier.show {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1) rotate(0deg);
-        }
-        .magnifier.grab {
-            transform: translate(-50%, -50%) scale(0.85) rotate(-8deg);
-        }
-        .magnifier svg { width: 100%; height: 100%; display: block; }
-
-        /* Hide default cursor on case files */
-        .case-file { cursor: none; }
 
         /* ====== HEADER ====== */
         header {
@@ -94,605 +53,416 @@
             margin: 0 auto 55px;
             text-align: center;
             position: relative;
-            animation: fadeDown 1s ease both;
+            animation: fadeDown 0.7s ease both;
         }
 
         .dept-line {
-            font-family: 'Special Elite', 'Noto Serif Bengali', serif;
-            font-size: 0.72rem;
-            letter-spacing: 6px;
-            color: rgba(232, 221, 192, 0.55);
+            font-family: 'Special Elite', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 5px;
+            color: rgba(233, 221, 193, 0.5);
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
         .dept-line::before,
         .dept-line::after {
-            content: "—";
-            margin: 0 12px;
-            opacity: 0.5;
+            content: "· · ·";
+            margin: 0 14px;
+            opacity: 0.6;
+            letter-spacing: 2px;
         }
 
         h1 {
-            font-family: 'Special Elite', 'Noto Serif Bengali', serif;
+            font-family: 'Special Elite', serif;
             font-size: clamp(1.9rem, 5vw, 3.2rem);
             font-weight: 400;
             letter-spacing: 3px;
             color: var(--paper);
             text-transform: uppercase;
             line-height: 1.1;
-            margin-bottom: 14px;
-            text-shadow:
-                0 0 30px rgba(232, 221, 192, 0.1),
-                2px 3px 0 rgba(0,0,0,0.7);
-        }
-
-        /* Blinking typewriter cursor after title */
-        .type-cursor {
-            display: inline-block;
-            width: 3px;
-            height: 0.85em;
-            background: var(--paper);
-            margin-left: 8px;
-            vertical-align: -0.05em;
-            animation: blink 1.05s steps(2, end) infinite;
-            box-shadow: 0 0 12px rgba(232,221,192,0.6);
-        }
-        @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
+            margin-bottom: 16px;
+            text-shadow: 0 0 30px rgba(233, 221, 193, 0.08);
         }
 
         .case-sub {
-            font-family: 'Caveat', 'Noto Serif Bengali', cursive;
-            font-size: 1.35rem;
-            color: rgba(232, 221, 192, 0.7);
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: rgba(233, 221, 193, 0.6);
             letter-spacing: 1px;
-            transform: rotate(-1.5deg);
+            transform: rotate(-1deg);
             display: inline-block;
         }
 
+        /* Top-right classified stamp */
         .header-stamp {
             position: absolute;
-            top: -10px;
-            right: 6%;
-            transform: rotate(14deg);
+            top: -6px;
+            right: 4%;
+            transform: rotate(12deg);
             font-family: 'Special Elite', serif;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 5px;
-            color: var(--stamp-red);
-            border: 3px solid var(--stamp-red);
-            padding: 6px 14px;
-            border-radius: 3px;
-            opacity: 0.8;
+            letter-spacing: 4px;
+            color: var(--stamp);
+            border: 2.5px solid var(--stamp);
+            padding: 5px 12px;
+            border-radius: 2px;
+            opacity: 0.75;
             text-transform: uppercase;
-            box-shadow: inset 0 0 10px rgba(155, 42, 42, 0.3);
-            -webkit-mask-image: radial-gradient(circle at 30% 40%, black 60%, rgba(0,0,0,0.6) 100%);
-            mask-image: radial-gradient(circle at 30% 40%, black 60%, rgba(0,0,0,0.6) 100%);
         }
 
         /* ====== SEARCH ====== */
         .search-wrap {
             max-width: 540px;
-            margin: 0 auto 60px;
+            margin: 0 auto 55px;
             position: relative;
-            animation: fadeUp 1s ease 0.2s both;
+            animation: fadeUp 0.7s ease 0.1s both;
         }
         .search-wrap label {
             display: block;
             font-family: 'Special Elite', serif;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 4px;
-            color: rgba(232, 221, 192, 0.5);
+            color: rgba(233, 221, 193, 0.45);
             margin-bottom: 10px;
             text-transform: uppercase;
         }
         .search-wrap input {
             width: 100%;
-            padding: 15px 50px 15px 20px;
-            background: linear-gradient(180deg, #e8ddc0 0%, #d6c8a3 100%);
+            padding: 14px 46px 14px 20px;
+            background: var(--paper);
             border: none;
             border-radius: 2px;
             color: var(--ink);
-            font-family: 'Courier Prime', 'Noto Serif Bengali', monospace;
-            font-size: 0.95rem;
+            font-family: 'Special Elite', 'Noto Serif Bengali', monospace;
+            font-size: 0.92rem;
+            letter-spacing: 0.5px;
             outline: none;
-            box-shadow:
-                inset 0 2px 6px rgba(90, 60, 20, 0.15),
-                1px 2px 0 rgba(168, 154, 112, 1),
-                2px 4px 0 rgba(0,0,0,0.4),
-                0 12px 30px rgba(0,0,0,0.5);
-            transform: rotate(-0.3deg);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-image:
-                radial-gradient(circle at 8% 40%, rgba(107, 74, 42, 0.15) 0%, transparent 12%),
-                radial-gradient(circle at 92% 70%, rgba(107, 74, 42, 0.12) 0%, transparent 10%),
-                linear-gradient(180deg, #e8ddc0 0%, #d6c8a3 100%);
+            box-shadow: 0 6px 18px -6px rgba(0,0,0,0.6);
+            transition: box-shadow 0.25s ease;
         }
         .search-wrap input::placeholder {
-            color: rgba(74, 58, 40, 0.5);
+            color: rgba(42, 33, 24, 0.4);
             font-style: italic;
         }
         .search-wrap input:focus {
-            transform: rotate(0deg);
-            box-shadow:
-                inset 0 2px 6px rgba(90, 60, 20, 0.15),
-                1px 2px 0 rgba(168, 154, 112, 1),
-                2px 4px 0 rgba(0,0,0,0.5),
-                0 18px 40px rgba(0,0,0,0.65),
-                0 0 0 1px rgba(155, 42, 42, 0.4);
+            box-shadow: 0 6px 22px -4px rgba(212, 162, 76, 0.35), 0 0 0 1px rgba(212, 162, 76, 0.5);
         }
         .search-wrap::after {
-            content: "🔍";
+            content: "⌕";
             position: absolute;
             right: 18px;
-            bottom: 14px;
-            font-size: 1rem;
-            opacity: 0.45;
+            bottom: 11px;
+            font-size: 1.3rem;
+            color: var(--ink-soft);
+            opacity: 0.55;
             pointer-events: none;
         }
 
-        /* ====== FILES GRID ====== */
-        .files-grid {
+        /* ====== DOSSIER GRID ====== */
+        .dossier-grid {
             max-width: 1180px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 42px 34px;
-            padding: 20px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
         }
 
-        /* ====== CASE FILE ====== */
-        .case-file {
+        /* ====== DOSSIER CARD ====== */
+        .dossier {
             position: relative;
-            display: block;
+            display: flex;
+            gap: 18px;
+            padding: 20px;
+            background:
+                repeating-linear-gradient(0deg,
+                    transparent 0,
+                    transparent 22px,
+                    var(--paper-line) 22px,
+                    var(--paper-line) 23px),
+                var(--paper);
+            border-radius: 2px;
             text-decoration: none;
             color: var(--ink);
-            background: linear-gradient(160deg, #e8ddc0 0%, #d6c8a3 55%, #c9b896 100%);
-            padding: 24px 20px 20px;
-            border-radius: 2px;
             box-shadow:
-                1px 2px 0 var(--paper-edge),
-                2px 4px 0 rgba(0,0,0,0.35),
-                0 14px 30px rgba(0,0,0,0.55),
-                inset -20px -30px 60px -40px rgba(107, 74, 42, 0.5);
-            transform: rotate(var(--tilt, -1deg));
-            transition: transform 0.5s cubic-bezier(.2,.8,.2,1),
-                        box-shadow 0.5s ease;
-            animation: fadeUp 0.7s ease both;
+                0 1px 0 var(--paper-2),
+                0 12px 30px -12px rgba(0,0,0,0.7);
+            transform: rotate(var(--tilt, 0deg));
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: cardIn 0.55s ease both;
             opacity: 0;
-            overflow: visible;
+            overflow: hidden;
         }
 
-        .case-file::before {
+        /* Subtle coffee stain */
+        .dossier::before {
             content: "";
             position: absolute;
-            inset: 0;
-            border-radius: 2px;
-            background-image:
-                radial-gradient(circle at 15% 12%, rgba(107, 74, 42, 0.1) 0%, transparent 8%),
-                radial-gradient(circle at 88% 85%, rgba(107, 74, 42, 0.08) 0%, transparent 12%),
-                repeating-linear-gradient(0deg, rgba(90, 70, 30, 0.02) 0px, transparent 1px, transparent 3px);
+            top: -30px;
+            right: -30px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                rgba(107, 74, 42, 0.14) 0%,
+                rgba(107, 74, 42, 0.06) 55%,
+                transparent 72%);
             pointer-events: none;
-            opacity: 0.9;
+            z-index: 0;
         }
 
-        /* Folder tab with case number */
-        .case-file::after {
-            content: attr(data-case);
+        /* Tiny paper fold in bottom-left */
+        .dossier::after {
+            content: "";
             position: absolute;
-            top: -20px;
-            left: 16px;
-            padding: 6px 16px 5px;
-            background: linear-gradient(180deg, #d6c8a3 0%, #c9b896 100%);
-            border-radius: 4px 6px 0 0;
-            font-family: 'Special Elite', serif;
-            font-size: 0.62rem;
-            letter-spacing: 2px;
-            color: var(--ink-soft);
-            text-transform: uppercase;
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.3),
-                0 -1px 0 rgba(0,0,0,0.1),
-                -1px 0 2px rgba(0,0,0,0.15);
-            z-index: 1;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 26px 26px;
+            border-color: transparent transparent rgba(42, 33, 24, 0.09) transparent;
+            pointer-events: none;
         }
 
-        .case-file:hover {
-            transform: rotate(0deg) translateY(-10px) scale(1.03);
+        .dossier:hover {
+            transform: rotate(0deg) translateY(-5px);
             box-shadow:
-                1px 3px 0 var(--paper-edge),
-                3px 6px 0 rgba(0,0,0,0.45),
-                0 22px 45px rgba(0,0,0,0.7),
-                0 0 40px rgba(255, 200, 140, 0.08);
-            z-index: 5;
+                0 1px 0 var(--paper-2),
+                0 20px 40px -12px rgba(0,0,0,0.85);
         }
 
-        /* ====== EVIDENCE PHOTO ====== */
-        .evidence-photo {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            border: 1px solid rgba(74, 58, 40, 0.3);
-            padding: 8px 8px 26px;
+        /* ====== PHOTO (left) ====== */
+        .dossier-photo {
+            flex: 0 0 auto;
+            width: 118px;
+            height: 158px;
             background: #f5ecd5;
+            padding: 5px;
             box-shadow:
-                0 4px 10px rgba(0,0,0,0.35),
-                inset 0 0 20px rgba(107, 74, 42, 0.15);
-            transform: rotate(var(--photo-tilt, 0.8deg));
-            transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
+                0 3px 8px rgba(0,0,0,0.35),
+                0 1px 0 rgba(255,255,255,0.6) inset;
+            transform: rotate(var(--photo-tilt, -1.5deg));
+            position: relative;
+            z-index: 1;
+            align-self: flex-start;
         }
 
-        .evidence-photo img {
+        .dossier-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            filter: sepia(0.12) contrast(1.02) brightness(0.98);
-            transition: filter 0.4s ease;
-        }
-        .case-file:hover .evidence-photo img {
-            filter: sepia(0) contrast(1.08) brightness(1.03);
-        }
-        .case-file:hover .evidence-photo {
-            transform: rotate(0deg) translateY(-3px);
+            filter: sepia(0.08);
         }
 
-        .evidence-photo::after {
-            content: attr(data-label);
+        /* Paperclip */
+        .paperclip {
             position: absolute;
-            bottom: 6px;
-            left: 8px;
-            right: 8px;
-            font-family: 'Caveat', cursive;
-            font-size: 0.85rem;
-            color: var(--pencil);
-            text-align: center;
-            letter-spacing: 0.5px;
-            line-height: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            top: -10px;
+            right: 12px;
+            width: 16px;
+            height: 34px;
+            z-index: 2;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.4));
         }
+        .paperclip svg { width: 100%; height: 100%; display: block; }
 
-        /* Tape corners */
-        .tape {
-            position: absolute;
-            width: 46px;
-            height: 16px;
-            background: linear-gradient(180deg, rgba(245, 235, 200, 0.85), rgba(215, 200, 160, 0.9));
-            box-shadow: 0 2px 4px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-            z-index: 3;
-            opacity: 0.92;
-        }
-        .tape.left { top: -8px; left: 12px; transform: rotate(-8deg); }
-        .tape.right { top: -8px; right: 12px; transform: rotate(7deg); }
-
-        /* ====== FILE META ====== */
-        .file-meta {
-            position: relative;
-            margin-top: 18px;
-            padding-top: 14px;
-            border-top: 1px dashed rgba(74, 58, 40, 0.35);
-        }
-        .file-meta::before {
-            content: "";
-            position: absolute;
-            top: -1px; left: 12%;
-            width: 30%;
-            height: 1px;
-            background: rgba(155, 42, 42, 0.5);
-        }
-
-        .case-title {
-            font-family: 'Special Elite', 'Noto Serif Bengali', serif;
-            font-size: 0.98rem;
-            font-weight: 400;
-            color: var(--ink);
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-            line-height: 1.25;
-            position: relative;
-        }
-
-        /* ====== REDACTED BAR ====== */
-        .redacted-title {
-            position: relative;
-            display: inline-block;
-            color: var(--ink);
-            padding: 1px 0;
-        }
-        .redacted-title::before {
-            content: "";
-            position: absolute;
-            inset: -3px -6px;
-            background: #0e0a06;
-            border-radius: 1px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform-origin: left center;
-        }
-        .redacted-title::after {
-            content: "REDACTED";
-            position: absolute;
-            inset: 0;
+        /* ====== BODY (right) ====== */
+        .dossier-body {
+            flex: 1;
             display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+            min-width: 0;
+        }
+
+        .dossier-top {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            color: #d6c8a3;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .case-no {
             font-family: 'Special Elite', serif;
             font-size: 0.65rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            transition: opacity 0.5s ease;
-        }
-        .case-file:hover .redacted-title::before {
-            opacity: 0;
-            transform: scaleX(0.3);
-        }
-        .case-file:hover .redacted-title::after {
-            opacity: 0;
-        }
-
-        .case-author {
-            font-family: 'Caveat', 'Noto Serif Bengali', cursive;
-            font-size: 1.1rem;
-            color: var(--ink-soft);
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .case-author::before {
-            content: "by";
-            font-family: 'Special Elite', serif;
-            font-size: 0.6rem;
             letter-spacing: 2px;
-            color: rgba(74, 58, 40, 0.55);
+            color: var(--ink-soft);
             text-transform: uppercase;
         }
 
-        /* Status stamp */
-        .file-stamp {
-            position: absolute;
-            bottom: 14px;
-            right: 14px;
+        .stamp-mini {
             font-family: 'Special Elite', serif;
             font-size: 0.55rem;
             letter-spacing: 2px;
             font-weight: 700;
-            color: var(--stamp-red);
-            border: 2px solid var(--stamp-red);
+            color: var(--stamp);
+            border: 1.5px solid var(--stamp);
             padding: 3px 7px;
             border-radius: 2px;
-            transform: rotate(-7deg);
-            opacity: 0.75;
             text-transform: uppercase;
-            background: rgba(232, 221, 192, 0.4);
-            -webkit-mask-image: radial-gradient(circle at 40% 40%, black 55%, rgba(0,0,0,0.55) 100%);
-            mask-image: radial-gradient(circle at 40% 40%, black 55%, rgba(0,0,0,0.55) 100%);
-            pointer-events: none;
+            transform: rotate(-5deg);
+            opacity: 0.85;
+            background: rgba(255,255,255,0.15);
+            white-space: nowrap;
         }
 
-        /* ====== DATE STAMP ====== */
-        .date-stamp {
-            position: absolute;
-            top: 14px;
-            right: 12px;
-            font-family: 'Special Elite', serif;
-            font-size: 0.58rem;
-            letter-spacing: 1.5px;
-            color: var(--stamp-blue);
-            border: 1px solid var(--stamp-blue);
-            border-radius: 50%;
-            padding: 10px 6px;
-            transform: rotate(12deg);
-            opacity: 0.7;
-            text-transform: uppercase;
-            background: rgba(232, 221, 192, 0.3);
-            line-height: 1.1;
-            text-align: center;
-            pointer-events: none;
-            width: 62px;
-            height: 62px;
+        .dossier-rule {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(122, 31, 31, 0.45) 0%, rgba(122, 31, 31, 0.45) 40px, rgba(90, 70, 40, 0.25) 40px, rgba(90, 70, 40, 0.25) 100%);
+            margin-bottom: 12px;
+        }
+
+        .dossier-title {
+            font-family: 'Special Elite', 'Noto Serif Bengali', serif;
+            font-size: 1.02rem;
+            font-weight: 400;
+            line-height: 1.25;
+            color: var(--ink);
+            margin-bottom: 6px;
+            letter-spacing: 0.2px;
+        }
+
+        .dossier-author {
+            font-family: 'Caveat', 'Noto Serif Bengali', cursive;
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+        .dossier-author::before {
+            content: "— ";
+            opacity: 0.5;
+        }
+
+        .dossier-subtitle {
+            font-family: 'Cormorant Garamond', 'Noto Serif Bengali', serif;
+            font-style: italic;
+            font-size: 0.85rem;
+            color: rgba(90, 74, 54, 0.75);
+            line-height: 1.4;
+            margin-bottom: auto;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .dossier-foot {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            -webkit-mask-image: radial-gradient(circle at 45% 45%, black 55%, rgba(0,0,0,0.5) 100%);
-            mask-image: radial-gradient(circle at 45% 45%, black 55%, rgba(0,0,0,0.5) 100%);
-            z-index: 4;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(90, 70, 40, 0.3);
         }
-        .date-stamp span { display: block; }
 
-        /* ====== RED STRING ====== */
-        .case-file[data-string="1"] .tape.right::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            right: 12px;
-            width: 2px;
-            height: 20px;
-            background: var(--string);
-            box-shadow: 0 0 4px rgba(176, 53, 53, 0.6);
-            transform: rotate(3deg);
+        .date-stamp {
+            font-family: 'Special Elite', serif;
+            font-size: 0.6rem;
+            letter-spacing: 1.5px;
+            color: var(--ink-soft);
+            text-transform: uppercase;
+        }
+        .date-stamp::before {
+            content: "FILED · ";
+            opacity: 0.55;
+        }
+
+        .read-mark {
+            font-family: 'Special Elite', serif;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--stamp);
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .dossier:hover .read-mark {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         /* ====== SKELETON ====== */
-        .skeleton-file {
-            height: 420px;
-            border-radius: 2px;
+        .skeleton {
+            height: 200px;
             background: linear-gradient(90deg,
-                rgba(184, 168, 128, 0.35) 0%,
-                rgba(212, 200, 163, 0.65) 50%,
-                rgba(184, 168, 128, 0.35) 100%);
+                rgba(233, 221, 193, 0.08) 0%,
+                rgba(233, 221, 193, 0.16) 50%,
+                rgba(233, 221, 193, 0.08) 100%);
             background-size: 200% 100%;
-            animation: shimmer 1.6s infinite;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            position: relative;
-        }
-        .skeleton-file::before {
-            content: "";
-            position: absolute;
-            top: -20px;
-            left: 16px;
-            width: 90px;
-            height: 22px;
-            background: rgba(184, 168, 128, 0.55);
-            border-radius: 4px 6px 0 0;
+            animation: shimmer 1.4s infinite;
+            border-radius: 2px;
         }
 
         /* ====== EMPTY ====== */
         .empty-state {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 70px 24px;
-            background: linear-gradient(160deg, #e8ddc0, #d6c8a3);
-            border-radius: 3px;
-            box-shadow: 1px 2px 0 var(--paper-edge), 0 12px 30px rgba(0,0,0,0.5);
-            transform: rotate(-0.5deg);
+            padding: 60px 24px;
+            background: var(--paper);
+            border-radius: 2px;
             color: var(--ink);
+            box-shadow: 0 12px 30px -12px rgba(0,0,0,0.7);
         }
-        .empty-state .icon { font-size: 2.6rem; margin-bottom: 16px; opacity: 0.7; }
+        .empty-state .icon { font-size: 2.4rem; margin-bottom: 12px; opacity: 0.6; }
         .empty-state h3 {
-            font-family: 'Special Elite', 'Noto Serif Bengali', serif;
-            font-size: 1rem;
+            font-family: 'Special Elite', serif;
+            font-size: 0.95rem;
             letter-spacing: 3px;
-            margin-bottom: 10px;
-            color: var(--stamp-red);
+            margin-bottom: 8px;
+            color: var(--stamp);
             text-transform: uppercase;
         }
         .empty-state p {
             font-family: 'Caveat', cursive;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--ink-soft);
         }
 
         /* ====== FOOTER ====== */
         footer {
             text-align: center;
-            margin-top: 80px;
-            color: rgba(232, 221, 192, 0.35);
+            margin-top: 70px;
+            color: rgba(233, 221, 193, 0.3);
             font-family: 'Special Elite', serif;
-            font-size: 0.65rem;
-            letter-spacing: 6px;
+            font-size: 0.62rem;
+            letter-spacing: 5px;
             text-transform: uppercase;
         }
         footer::before {
-            content: "END OF FILE";
+            content: "· · END OF INDEX · ·";
             display: block;
-            margin-bottom: 16px;
-            color: rgba(155, 42, 42, 0.6);
-            font-size: 0.6rem;
-            letter-spacing: 8px;
-        }
-        footer::after {
-            content: "";
-            display: block;
-            width: 80px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(232, 221, 192, 0.4), transparent);
-            margin: 14px auto 0;
+            margin-bottom: 14px;
+            color: rgba(212, 162, 76, 0.4);
+            letter-spacing: 6px;
         }
 
         /* ====== SCROLLBAR ====== */
-        ::-webkit-scrollbar { width: 11px; }
-        ::-webkit-scrollbar-track { background: #140a05; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0e0b08; }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #6b4a2a, #3a2818);
-            border-left: 2px solid #140a05;
+            background: #3a2a1a;
+            border-radius: 5px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #8a5a34, #4a2d18);
-        }
-
-        /* ====== TRANSITION OVERLAY ====== */
-        .transition-overlay {
-            position: fixed;
-            inset: 0;
-            background: #0a0603;
-            z-index: 99998;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.35s ease;
-        }
-        .transition-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .opening-folder {
-            width: 120px;
-            height: 90px;
-            position: relative;
-            perspective: 600px;
-        }
-        .opening-folder::before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: linear-gradient(160deg, #d6c8a3, #b8a880);
-            border-radius: 3px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.2);
-        }
-        .opening-folder::after {
-            content: "";
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            width: 90%;
-            height: 70px;
-            background: linear-gradient(160deg, #f5ecd5, #e8ddc0);
-            border-radius: 3px;
-            transform-origin: left center;
-            transform: translateX(-50%) rotateX(0deg);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-            animation: folderOpen 1s cubic-bezier(.4,.0,.2,1) forwards;
-        }
-        @keyframes folderOpen {
-            0% { transform: translateX(-50%) rotateX(0deg) translateY(0); }
-            50% { transform: translateX(-50%) rotateX(-90deg) translateY(-5px); }
-            100% { transform: translateX(-50%) rotateX(-160deg) translateY(-40px); opacity: 0.2; }
-        }
-
-        .transition-text {
-            font-family: 'Special Elite', serif;
-            font-size: 0.8rem;
-            letter-spacing: 6px;
-            color: var(--paper);
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeInDelay 0.5s ease 0.3s forwards;
-        }
-        .transition-text::after {
-            content: "…";
-            animation: dots 1.4s steps(4, end) infinite;
-        }
-        @keyframes fadeInDelay {
-            to { opacity: 0.9; }
-        }
-        @keyframes dots {
-            0%, 25% { content: "…"; }
-            50% { content: "…"; }
-            75% { content: "…"; }
-        }
+        ::-webkit-scrollbar-thumb:hover { background: #4a3524; }
 
         /* ====== ANIMATIONS ====== */
         @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-25px); }
+            from { opacity: 0; transform: translateY(-15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(25px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes cardIn {
+            to { opacity: 1; }
         }
         @keyframes shimmer {
             0% { background-position: 200% 0; }
@@ -700,141 +470,48 @@
         }
 
         /* ====== RESPONSIVE ====== */
-        @media (max-width: 700px) {
+        @media (max-width: 860px) {
+            .dossier-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        @media (max-width: 520px) {
             body { padding: 40px 14px 60px; }
             header { margin-bottom: 40px; }
-            .header-stamp { font-size: 0.6rem; padding: 4px 9px; letter-spacing: 3px; right: 0; }
-            .dept-line { font-size: 0.6rem; letter-spacing: 4px; }
-            .files-grid { gap: 30px 20px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
-            .case-file { padding: 18px 14px 14px; }
-            .case-title { font-size: 0.85rem; }
-            .case-author { font-size: 0.98rem; }
-            .file-stamp { font-size: 0.5rem; padding: 2px 5px; }
-            .date-stamp { width: 50px; height: 50px; font-size: 0.5rem; }
-            .magnifier { display: none; }
-            .case-file { cursor: pointer; }
+            .header-stamp { font-size: 0.58rem; padding: 3px 8px; letter-spacing: 2px; right: 0; }
+            .dept-line { font-size: 0.58rem; letter-spacing: 3px; }
+            .dept-line::before, .dept-line::after { content: "·"; margin: 0 8px; }
+            .dossier { padding: 16px; gap: 14px; }
+            .dossier-photo { width: 92px; height: 124px; }
+            .dossier-title { font-size: 0.9rem; }
+            .dossier-author { font-size: 0.95rem; }
+            .dossier-subtitle { font-size: 0.78rem; }
+            .search-wrap input { font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Magnifier cursor follower -->
-    <div class="magnifier" id="magnifier" aria-hidden="true">
-        <svg viewBox="0 0 52 52">
-            <defs>
-                <radialGradient id="lensGrad" cx="35%" cy="30%">
-                    <stop offset="0%" stop-color="rgba(255,235,180,0.35)"/>
-                    <stop offset="70%" stop-color="rgba(212,162,76,0.12)"/>
-                    <stop offset="100%" stop-color="rgba(212,162,76,0.3)"/>
-                </radialGradient>
-            </defs>
-            <circle cx="21" cy="21" r="15" fill="url(#lensGrad)" stroke="#d4a24c" stroke-width="2.5"/>
-            <circle cx="21" cy="21" r="15" fill="none" stroke="rgba(255,240,200,0.4)" stroke-width="0.8"/>
-            <line x1="32" y1="32" x2="46" y2="46" stroke="#d4a24c" stroke-width="4" stroke-linecap="round"/>
-            <line x1="32" y1="32" x2="46" y2="46" stroke="rgba(255,240,200,0.35)" stroke-width="1" stroke-linecap="round"/>
-        </svg>
-    </div>
-
-    <!-- Transition overlay -->
-    <div class="transition-overlay" id="transitionOverlay">
-        <div class="opening-folder"></div>
-        <div class="transition-text">Opening case file</div>
-    </div>
-
     <header>
         <div class="dept-line">Bureau of Unresolved Narratives</div>
-        <h1>The Epilogue Archive<span class="type-cursor"></span></h1>
-        <p class="case-sub">~ case files of curious tales &amp; forgotten letters ~</p>
-        <div class="header-stamp">Classified</div>
+        <h1>The Epilogue Archive</h1>
+        <p class="case-sub">~ a confidential dossier of curious tales ~</p>
+        <div class="header-stamp">Restricted</div>
     </header>
 
     <div class="search-wrap">
-        <label>Search the Records</label>
+        <label>Search the Archive</label>
         <input type="text" id="searchInput" placeholder="Enter a name, a title, or a whisper...">
     </div>
 
-    <main class="files-grid" id="library"></main>
+    <main class="dossier-grid" id="library"></main>
 
-    <footer>The Epilogue Archive &mdash; Filed &amp; Sealed</footer>
+    <footer>The Epilogue Archive · Filed &amp; Sealed</footer>
 
     <script>
-        /* =========================================================
-           SOUND — typewriter click (Web Audio API, no external file)
-           ========================================================= */
-        let audioCtx = null;
-        let lastClickTime = 0;
-
-        function initAudio() {
-            if (audioCtx) return;
-            try {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            } catch (e) { /* silent */ }
-        }
-
-        function playTypewriterClick() {
-            if (!audioCtx) return;
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const now = performance.now();
-            if (now - lastClickTime < 70) return; // throttle
-            lastClickTime = now;
-
-            const t = audioCtx.currentTime;
-
-            // Short noise burst
-            const buffer = audioCtx.createBuffer(1, Math.floor(audioCtx.sampleRate * 0.025), audioCtx.sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < data.length; i++) {
-                data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (data.length * 0.28));
-            }
-            const src = audioCtx.createBufferSource();
-            src.buffer = buffer;
-
-            // Metal click via bandpass
-            const filter = audioCtx.createBiquadFilter();
-            filter.type = 'bandpass';
-            filter.frequency.value = 2400 + Math.random() * 800;
-            filter.Q.value = 4;
-
-            const gain = audioCtx.createGain();
-            gain.gain.setValueAtTime(0.14, t);
-            gain.gain.exponentialRampToValueAtTime(0.001, t + 0.045);
-
-            src.connect(filter).connect(gain).connect(audioCtx.destination);
-            src.start(t);
-            src.stop(t + 0.06);
-        }
-
-        // Unlock audio on first user gesture
-        ['click', 'touchstart', 'keydown', 'mousemove'].forEach(evt => {
-            window.addEventListener(evt, initAudio, { once: true, passive: true });
-        });
-
-        /* =========================================================
-           MAGNIFIER CURSOR — smooth follow
-           ========================================================= */
-        const magnifier = document.getElementById('magnifier');
-        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-        let cx = mx, cy = my;
-        let hoveringFile = false;
-
-        window.addEventListener('mousemove', (e) => {
-            mx = e.clientX;
-            my = e.clientY;
-        });
-
-        function animateMagnifier() {
-            cx += (mx - cx) * 0.20;
-            cy += (my - cy) * 0.20;
-            magnifier.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%) ${hoveringFile ? 'scale(1) rotate(0deg)' : 'scale(0.6) rotate(-15deg)'}`;
-            requestAnimationFrame(animateMagnifier);
-        }
-        animateMagnifier();
-
-        /* =========================================================
-           HELPERS
-           ========================================================= */
         let allBooks = [];
-        const STAMPS = ['Solved', 'Active', 'Pending', 'Redacted', 'Cold Case', 'Unsolved', 'Closed'];
+        const STAMPS = ['Active', 'Pending', 'Filed', 'Open', 'Cold', 'Classified', 'Ongoing'];
 
         function escapeHtml(s) {
             return String(s || '').replace(/[&<>"']/g, c => ({
@@ -849,97 +526,63 @@
             for (let i = 0; i < (seed || '').length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
             return h;
         }
-
-        function seedIndex(seed, len) { return hash(seed) % len; }
+        function seed(seedStr, len) { return hash(seedStr) % len; }
 
         function caseNumber(i) { return String(i + 1).padStart(3, '0'); }
 
         function dateFromId(id) {
             const h = hash(id || 'x');
-            const day = (h % 28) + 1;
-            const month = ((h >> 5) % 12) + 1;
-            const year = 2020 + ((h >> 10) % 6);
-            return `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}/${year}`;
+            const d = (h % 28) + 1;
+            const m = ((h >> 5) % 12) + 1;
+            const y = 2020 + ((h >> 10) % 6);
+            return `${String(d).padStart(2, '0')}/${String(m).padStart(2, '0')}/${String(y).slice(-2)}`;
         }
 
-        function isRedacted(id) {
-            // ~1 in 4 books get redacted
-            return seedIndex((id || '') + 'r', 4) === 0;
-        }
-
-        /* =========================================================
-           BUILD CASE FILE
-           ========================================================= */
-        function buildCaseFile(book, i) {
-            const tilt = ((seedIndex(book.id || book.title, 7) - 3) * 0.4).toFixed(2) + 'deg';
-            const photoTilt = ((seedIndex(book.id + 'p', 5) - 2) * 0.5).toFixed(2) + 'deg';
-            const stamp = STAMPS[seedIndex(book.id || book.title, STAMPS.length)];
-            const hasString = seedIndex(book.id + 's', 3) === 0;
-            const redacted = isRedacted(book.id);
-            const fileDate = dateFromId(book.id);
+        function buildCard(book, i) {
+            const tilt = ((seed(book.id + 't', 5) - 2) * 0.35).toFixed(2) + 'deg';
+            const photoTilt = ((seed(book.id + 'p', 5) - 2) * 0.6).toFixed(2) + 'deg';
+            const stamp = STAMPS[seed(book.id + 'st', STAMPS.length)];
 
             const a = document.createElement('a');
             a.href = `reader.html?book=${encodeURIComponent(book.id)}`;
-            a.className = 'case-file';
+            a.className = 'dossier';
             a.style.setProperty('--tilt', tilt);
             a.style.setProperty('--photo-tilt', photoTilt);
-            a.style.animationDelay = (i * 0.05) + 's';
-            a.setAttribute('data-case', `Case № ${caseNumber(i)}`);
-            if (hasString) a.setAttribute('data-string', '1');
-
-            const titleHtml = redacted
-                ? `<span class="redacted-title">${escapeHtml(book.title)}</span>`
-                : escapeHtml(book.title);
+            a.style.animationDelay = (i * 0.045) + 's';
 
             a.innerHTML = `
-                <div class="evidence-photo" data-label="${escapeHtml(book.subtitle || book.author || '')}">
-                    <span class="tape left"></span>
-                    <span class="tape right"></span>
+                <div class="dossier-photo">
                     <img src="./${cleanPath(book.cover)}"
                          alt="${escapeHtml(book.title)}"
                          loading="lazy"
-                         onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22300%22><rect fill=%22%23d6c8a3%22 width=%22200%22 height=%22300%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%234a3a28%22 font-family=%22Courier%22 font-size=%2213%22 text-anchor=%22middle%22>NO PHOTO</text></svg>';">
-                    <div class="date-stamp"><span>${fileDate}</span></div>
+                         decoding="async"
+                         onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22300%22><rect fill=%22%23d8caa8%22 width=%22200%22 height=%22300%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%232a2118%22 font-family=%22monospace%22 font-size=%2214%22 text-anchor=%22middle%22>NO PHOTO</text></svg>';">
+                    <div class="paperclip">
+                        <svg viewBox="0 0 16 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 2 C4.5 2 2.5 4.5 2.5 8 L2.5 25 C2.5 29 5 31.5 8 31.5 C11 31.5 13.5 29 13.5 25 L13.5 10 C13.5 8 12.5 6.5 10.5 6.5 C8.5 6.5 7.5 8 7.5 10 L7.5 24"
+                                  stroke="#8a7458" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </div>
                 </div>
-                <div class="file-meta">
-                    <div class="case-title">${titleHtml}</div>
-                    <div class="case-author">${escapeHtml(book.author)}</div>
+                <div class="dossier-body">
+                    <div class="dossier-top">
+                        <span class="case-no">CASE № ${caseNumber(i)}</span>
+                        <span class="stamp-mini">${stamp}</span>
+                    </div>
+                    <div class="dossier-rule"></div>
+                    <div class="dossier-title">${escapeHtml(book.title)}</div>
+                    <div class="dossier-author">${escapeHtml(book.author)}</div>
+                    <div class="dossier-subtitle">${escapeHtml(book.subtitle || '')}</div>
+                    <div class="dossier-foot">
+                        <span class="date-stamp">${dateFromId(book.id)}</span>
+                        <span class="read-mark">Read File →</span>
+                    </div>
                 </div>
-                <div class="file-stamp">${stamp}</div>
             `;
-
-            // Sound + cursor feedback
-            a.addEventListener('mouseenter', () => {
-                hoveringFile = true;
-                magnifier.classList.add('show');
-                playTypewriterClick();
-            });
-            a.addEventListener('mouseleave', () => {
-                hoveringFile = false;
-                magnifier.classList.remove('show');
-            });
-            a.addEventListener('mousedown', () => magnifier.classList.add('grab'));
-            a.addEventListener('mouseup', () => magnifier.classList.remove('grab'));
-
-            // Opening transition
-            a.addEventListener('click', (e) => {
-                e.preventDefault();
-                playTypewriterClick();
-                const overlay = document.getElementById('transitionOverlay');
-                overlay.classList.add('active');
-                hoveringFile = false;
-                magnifier.classList.remove('show');
-                setTimeout(() => {
-                    window.location.href = a.href;
-                }, 900);
-            });
 
             return a;
         }
 
-        /* =========================================================
-           RENDER
-           ========================================================= */
         function renderLibrary(books) {
             const library = document.getElementById('library');
             library.innerHTML = '';
@@ -947,26 +590,23 @@
             if (!books.length) {
                 library.innerHTML = `
                     <div class="empty-state">
-                        <div class="icon">📁</div>
+                        <div class="icon">🗂</div>
                         <h3>No Records Found</h3>
                         <p>the archive holds no file of that name...</p>
                     </div>`;
                 return;
             }
 
-            books.forEach((book, i) => {
-                library.appendChild(buildCaseFile(book, i));
-            });
+            const frag = document.createDocumentFragment();
+            books.forEach((book, i) => frag.appendChild(buildCard(book, i)));
+            library.appendChild(frag);
         }
 
         function showSkeleton() {
             const library = document.getElementById('library');
-            library.innerHTML = '';
-            for (let i = 0; i < 8; i++) {
-                const sk = document.createElement('div');
-                sk.className = 'skeleton-file';
-                library.appendChild(sk);
-            }
+            let html = '';
+            for (let i = 0; i < 6; i++) html += '<div class="skeleton"></div>';
+            library.innerHTML = html;
         }
 
         showSkeleton();
@@ -977,19 +617,24 @@
                 allBooks = Array.isArray(books) ? books : [];
                 renderLibrary(allBooks);
 
-                document.getElementById('searchInput').addEventListener('input', (e) => {
-                    const q = e.target.value.toLowerCase().trim();
-                    if (!q) { renderLibrary(allBooks); return; }
-                    const filtered = allBooks.filter(b =>
-                        (b.title || '').toLowerCase().includes(q) ||
-                        (b.author || '').toLowerCase().includes(q) ||
-                        (b.subtitle || '').toLowerCase().includes(q)
-                    );
-                    renderLibrary(filtered);
+                const searchInput = document.getElementById('searchInput');
+                let debounceTimer;
+                searchInput.addEventListener('input', (e) => {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(() => {
+                        const q = e.target.value.toLowerCase().trim();
+                        if (!q) { renderLibrary(allBooks); return; }
+                        const filtered = allBooks.filter(b =>
+                            (b.title || '').toLowerCase().includes(q) ||
+                            (b.author || '').toLowerCase().includes(q) ||
+                            (b.subtitle || '').toLowerCase().includes(q)
+                        );
+                        renderLibrary(filtered);
+                    }, 120);
                 });
             })
             .catch(err => {
-                console.error("Error loading case files:", err);
+                console.error("Error loading archive:", err);
                 document.getElementById('library').innerHTML = `
                     <div class="empty-state">
                         <div class="icon">⚠</div>
