@@ -4,8 +4,6 @@
     "title": "দুঃখবিলাস",
     "subtitle": "একটি কাল্পনিক উপাখ্যান",
     "author": "উদয় রহমান",
-    "category": "story",
-    "cover": "covers/দুঃখবিলাস.png",
     "pdf": "https://drive.google.com/file/d/1ZoO-H-a8j2dtvFNZbvq7DrgP7XsrHGtk/preview"
   },
   {
@@ -13,8 +11,6 @@
     "title": "সুর",
     "subtitle": "একটি কাল্পনিক উপাখ্যান",
     "author": "উদয় রহমান",
-    "category": "story",
-    "cover": "covers/সুর ০৯০৭২০২৬.png",
     "pdf": "https://drive.google.com/file/d/1vMKI-fpffEUurWfOm4DIabqvKNvW2qVD/preview"
   },
   {
@@ -22,8 +18,6 @@
     "title": "অবেলার নীল চিরকুট",
     "subtitle": "একটি রোমান্টিক উপাখ্যান",
     "author": "তাহসিন আবরার রাদ",
-    "category": "story",
-    "cover": "covers/Obelaar Neel cirkoot - Google Docs.pdf (1).png",
     "pdf": "https://drive.google.com/file/d/1JIqeioQnMzBKYMXTdhPSbaEOuY0EIUIt/preview"
   },
   {
@@ -31,8 +25,6 @@
     "title": "Majmua-E-Kalam",
     "subtitle": "Urdu poetry",
     "author": "Tahsin Abrar Rad",
-    "category": "poetry",
-    "cover": "covers/A Favorite Verse.png",
     "pdf": "https://drive.google.com/file/d/1c-UNjPopo5huAWdUb_5xu0AfEPP7XyYm/preview"
   },
   {
@@ -40,8 +32,6 @@
     "title": "নিস্তব্ধতার প্রতিধ্বনি",
     "subtitle": "সাইবার-সাইকো থ্রিলার সংকলন",
     "author": "তাহসিন আবরার রাদ",
-    "category": "story",
-    "cover": "covers/cover1.png",
     "pdf": "https://drive.google.com/file/d/1DAKjmzu2WJNfBTuWMNVjtHYq9TtWLEWs/preview"
   },
   {
@@ -49,8 +39,6 @@
     "title": "A Favorite Verse",
     "subtitle": "English poetry",
     "author": "Tahsin Abrar Rad",
-    "category": "poetry",
-    "cover": "covers/cover2.png",
     "pdf": "https://drive.google.com/file/d/1tL3l0OiPmpR8MugStTxDVha2lFh8HPTU/preview"
   }
 ]
